@@ -16,20 +16,10 @@ app.use(
 );
 app.use(cors());
 
-app.get("/api/persons", (req, res) => {
-  res.json(persons);
-});
-
 app.get("/api/persons/:id", (req, res) => {
   Person.findById(req.params.id).then(person => {
     res.json(person.toJSON());
   });
-});
-
-app.delete("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
-  persons = persons.filter(person => person.id !== id);
-  res.status(204).end();
 });
 
 app.post("/api/persons", (req, res) => {
@@ -46,12 +36,6 @@ app.post("/api/persons", (req, res) => {
 
   person.save().then(savedPerson => {
     response.json(savedPerson.toJSON());
-  });
-});
-
-app.get("/info", (req, res) => {
-  Person.findById(req.params.id).then(person => {
-    res.json(person.toJSON());
   });
 });
 
